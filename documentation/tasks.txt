@@ -1,0 +1,131 @@
+Task 1: Set Up the Project Structure
+Create an HTML File (index.html):
+Add the basic structure for the search form and movie display section.
+Include the following sections:
+A search bar where users can input a movie title.
+A button to trigger the search.
+A container to display movie results (such as movie posters, titles, and brief descriptions).
+Create a CSS File (style.css):
+Style the app with a simple layout:
+Center the search bar at the top.
+Display movie results in a grid with posters, titles, and details.
+Create a JavaScript File (app.js):
+Write JavaScript to handle fetching movie data and displaying results.
+
+Task 2: Fetch Movie Data from OMDb API
+Sign up for a free API key from OMDb API.
+
+Task 3: HTML Structure
+Search Bar Section:
+Create a form with an input field for the movie title and a search button.
+Example
+<div class="search-container">
+  <input type="text" id="search-input" placeholder="Search for a movie...">
+  <button id="search-btn">Search</button>
+</div>
+Movie Results Section:
+Add a div to display the movie cards.
+Example:
+<div id="movie-list"></div>
+Task 4: Style the Application (CSS)
+Search Bar Styling:
+Position the search bar at the top of the page.
+Style the input field and button.
+Example:
+.search-container {
+  text-align: center;
+  margin: 20px 0;
+}
+#search-input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+#search-btn {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+Movie Cards Styling:
+Display movie results as cards (poster, title, year).
+Use a grid layout for responsiveness.
+Example:
+#movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 20px;
+}
+.movie-card {
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.movie-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+Task 5: JavaScript Logic (Search and Display Movies)
+Handle Search Button Click:
+
+Add an event listener to the search button that calls the OMDb API when clicked.
+Example:
+document.getElementById('search-btn').addEventListener('click', () => {
+  const query = document.getElementById('search-input').value;
+  searchMovies(query);
+});
+Fetch Movies from OMDb API:
+
+Create a function searchMovies to fetch data from OMDb.
+Example:
+async function searchMovies(query) {
+  const apiKey = 'your_api_key';
+  const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${query}`);
+  const data = await response.json();
+  displayMovies(data.Search);
+}
+Display Movie Results:
+
+Create a function displayMovies to show the movie data in the DOM.
+Example:
+function displayMovies(movies) {
+  const movieList = document.getElementById('movie-list');
+  movieList.innerHTML = ''; // Clear previous results
+  movies.forEach(movie => {
+    const movieCard = `
+      <div class="movie-card">
+        <img src="${movie.Poster}" alt="${movie.Title}">
+        <h3>${movie.Title}</h3>
+        <p>${movie.Year}</p>
+      </div>
+    `;
+    movieList.innerHTML += movieCard;
+  });
+}
+
+Task 6: Handle Edge Cases and Errors
+No Search Results:
+
+Display a message if no results are found.
+Example:
+if (!movies) {
+  movieList.innerHTML = '<p>No movies found</p>';
+}
+Input Validation:
+
+Ensure the search input is not empty before fetching the API.
+
+Bonus Task: Add Movie Details Page
+Movie Details API Call:
+On clicking a movie card, fetch and display additional details like the plot, ratings, and director using another API endpoint:
+http://www.omdbapi.com/?apikey=YOUR_API_KEY&i=movie_id
+Details View:
+Open a modal or navigate to a new page to display movie details.
