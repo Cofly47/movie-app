@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Search Bar</title>
+    
+    <head>
+        <title>Search Bar</title>
     <meta name="viewport"
           content="width=device-width,
                    initial-scale=1">
@@ -16,33 +16,27 @@
 
 <body>
     
-        <!-- search bar right align -->
+    <!-- search bar right align -->
     <div class="searchbar">     
         <div class="search">
             <form action="#">
-                <input type="text" placeholder="Search movies..."
-                       name="search">
-                <button>
+                <input id="search-input" type="text" placeholder="Search movies..."
+                name="search">
+                <button id="search-btn">
                     <i class="fa fa-search"></i>
                 </button>
             </form>
         </div>
     </div>
-
-    <!-- logo with tag -->
-    <div class="content">
-        <h1>GeeksforGeeks</h1>
-        <b>A Computer Science Portal for Geeks</b>
-        <p>
-            How many times were you frustrated while
-            looking out for a good collection of
-            programming/algorithm/interview questions?
-            What did you expect and what did you get?
-            This portal has been created to provide
-            well written, well thought and well
-            explained solutions for selected questions.
-        </p>
-    </div>
-</body>
-
-</html>
+    <div id="movie-list"></div>
+    
+            <div class="movie-card">
+              <img src="{https://www.google.com/search?sca_esv=4bbd28f93242c723&sxsrf=ADLYWILPhaxDofo8AnxJ2hsDWYRt_OTMZQ:1729258040500&q=HARRY+POTTER&udm=2&fbs=AEQNm0CtKM7bCgAGTOLx3M1i6UFoL4QUn5CHHI0U028TjiGbxmQoejDN1xcujyklEcEoaEjcPzCTa2EcrdAlCM4xcpAaT8OHO7Vekyd-pq7GFgThpFDqwPCEZUkWYV5SX2llEfa1W0IQ5JNGNZHgJe91h_z93v5SDlyzrg-ATj1cB_sP__vZPqs&sa=X&ved=2ahUKEwjQjOqZhJiJAxUbhv0HHSC_C1AQtKgLegQICRAB&biw=1553&bih=883&dpr=1#vhid=baSYSRhAq4lHJM&vssid=mosaic}" alt="{Harry Potter}">
+              <h3>{Harry Potter}</h3>
+              <p>{1997}</p>
+            </div>
+            
+        </body>
+        <script src="app.js" type="text/javascript"></script>
+        
+        </html>
