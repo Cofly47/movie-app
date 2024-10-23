@@ -4,9 +4,22 @@
 
   document.getElementById('search-btn').addEventListener('click', () => {
     const query = document.getElementById('search-input').value;
-    console.log(query)
-    searchMovies(query);
+    if (query.length < 3) return;
+    handleSearch(query);
   });
+
+  document.getElementById('search-input').addEventListener('keydown', function(e) {
+    const query = document.getElementById('search-input').value;
+    if (e.key === "Enter" && query.length >= 3) {
+      handleSearch(query);
+    } 
+  });
+
+  function handleSearch(query) {
+    document.getElementById('movie-list').innerHTML = "";
+    currentPage = 1;
+    searchMovies(query);
+  }
 
   async function searchMovies(query) {
     if (isLoading) return;  
@@ -23,8 +36,8 @@
     const movieList = document.getElementById('movie-list');
     // movieList.innerHTML = ''; // Clear previous results
     movies?.forEach(movie => {
-      const movieCard = `
-        <div class="movie-card">
+      const movieCard = ` 
+        <div class="movie-card" onclick="openModal('${movie.imdbID}')"> 
           <img src="${movie.Poster}" alt="${movie.Title}">
           <h3>${movie.Title}</h3>
           <p>${movie.Year}</p>
@@ -51,3 +64,43 @@
           }
         }
   window.addEventListener('scroll', handleScroll);
+
+   // Open Modal
+   function openModal(movieId) {
+    const modal = document.getElementById('cartModal');
+    modal.style.display = 'flex';
+    searchMovieDetails(movieId);
+}
+
+// Close Modal
+function closeModal() {
+    const modal = document.getElementById('cartModal');
+    modal.style.display = 'none';
+}
+
+
+async function searchMovieDetails(movieId) {
+  const apiKey = 'c86dfea7';
+  const response = await fetch(`https://www.omdbapi.com/?i=${movieId}&apikey=${apiKey}`);
+  const data = await response.json();
+  displayMovieDetails(data);
+}
+
+function displayMovieDetails(movie) {
+  const movieDetails = document.getElementById('movie-details');
+  movieDetails.innerHTML = ''; // Clear previous results
+
+  movieDetails.innerHTML = ` 
+      <div class="movie-detail-header"> 
+        <img src="${movie.Poster}" alt="${movie.Title}" class="movie-detail-header-img">
+        <div class="movie-detail-header-title">
+          <h3>${movie.Title}</h3>
+          <p>${movie.Year}</p>
+        </div>
+      </div>
+    `;
+
+    if (!movies) {
+    movieList.innerHTML = '<p>No movie details found</p>';
+  }
+}
