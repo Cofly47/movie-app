@@ -102,17 +102,22 @@ function displayMovieDetails(movie) {
           <span class="large-font white">${movie.imdbRating}</span> 
           <p class="gray">${movie.Rated}&emsp;${movie.Year}&emsp;${movie.Runtime}</p>
           <div id="movie-detail-genre-container" class="movie-detail-genre-container">
-         
           </div>
         </div>
       </div>
-    `;
+      <div class="movie-detail-bottom">
+        <h2 class="white">Plot:</h2>
+        <p class="gray">${movie.Plot}</p>
+        <h2 class="white">Cast:</h2>
+        <p class="gray">${movie.Actors}</p>
+      </div>
+      `;
 
     genreArray.forEach(genre => { 
       const movieCard = ` 
       <div class="movie-detail-genre-item">
-        <p class="gray">${genre}<p>
-        
+        <p class="white">${genre}<p>
+          
       
       </div>
     `;

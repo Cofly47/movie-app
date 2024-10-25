@@ -152,11 +152,6 @@ body {
     font-size: 24px;
 }
 
-.movie-details {
-    display: flex;
-    justify-content: center;
-}
-
 .movie-detail-header {
     display: flex;
     gap: 2em;
@@ -191,4 +186,19 @@ body {
 
 .gray{
     color: rgb(184, 175, 175);
+}
+
+.movie-detail-genre-container{
+    display:flex;
+    justify-content: space-between;
+    
+}
+
+.movie-detail-genre-item{
+    
+        border: solid white;
+        border-radius: 0.5em;
+        padding-right: 0.4em;
+        padding-left: 0.4em;
+    
 }
