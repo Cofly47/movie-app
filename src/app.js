@@ -40,7 +40,7 @@
         <div class="movie-card" onclick="openModal('${movie.imdbID}')"> 
           <img src="${movie.Poster}" alt="${movie.Title}">
           <h3>${movie.Title}</h3>
-          <p>${movie.Year}</p>
+          <p>${movie.Year}</p> 
         </div>
       `;
       movieList.innerHTML += movieCard;
@@ -89,18 +89,38 @@ async function searchMovieDetails(movieId) {
 function displayMovieDetails(movie) {
   const movieDetails = document.getElementById('movie-details');
   movieDetails.innerHTML = ''; // Clear previous results
+  // adventure, fantasy, drama 
+  let genreArray = movie.Genre.split(", ")
+  console.log(genreArray)
 
   movieDetails.innerHTML = ` 
       <div class="movie-detail-header"> 
         <img src="${movie.Poster}" alt="${movie.Title}" class="movie-detail-header-img">
-        <div class="movie-detail-header-title">
-          <h3>${movie.Title}</h3>
-          <p>${movie.Year}</p>
+        <div class="movie-detail-header-title center">
+          <h3 class="white">${movie.Title}</h3>
+          <i class="fa fa-star style="color: #FFD43B;"></i>
+          <span class="large-font white">${movie.imdbRating}</span> 
+          <p class="gray">${movie.Rated}&emsp;${movie.Year}&emsp;${movie.Runtime}</p>
+          <div id="movie-detail-genre-container" class="movie-detail-genre-container">
+         
+          </div>
         </div>
       </div>
     `;
 
-    if (!movies) {
+    genreArray.forEach(genre => { 
+      const movieCard = ` 
+      <div class="movie-detail-genre-item">
+        <p class="gray">${genre}<p>
+        
+      
+      </div>
+    `;
+    document.getElementById('movie-detail-genre-container').innerHTML += movieCard;
+      
+    })
+
+    if (!movie) {
     movieList.innerHTML = '<p>No movie details found</p>';
   }
 }

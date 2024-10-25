@@ -126,10 +126,11 @@ body {
     z-index: 2;
     justify-content: center;
     align-items: center;
+    
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: rgb(37, 103, 129);
     padding: 20px;
     width: 700px;
     border-radius: 10px;
@@ -168,4 +169,26 @@ body {
 
 .movie-detail-header-img {
     flex-basis: 33.33%;
+}
+
+.center {
+    text-align: center;
+}
+
+.large-font{
+    font-size: 1.5rem;
+}
+
+.fa-star:before {
+    content: "\f005";
+    color: #fdfd52;
+    font-size: x-large;
+}
+
+.white{
+    color: whitesmoke;
+}
+
+.gray{
+    color: rgb(184, 175, 175);
 }
